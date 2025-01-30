@@ -1,17 +1,28 @@
 <app-header></app-header>
-<ul>
-  <div class="split left">
+<div class="split left">
+
+  <div class="center">
     <button>Add new Employee</button>
   </div>
-  <div class="split right">
+
+</div>
+<div class="split right">
+  <div class="centerSearch">
     <input>
     <button>Search</button>
   </div>
-  <li *ngFor="let e of employees$ | async">
-    <td>{{ e.lastName }}</td>
-    <td>{{ e.firstName }}</td>
-    <td>
-      <button>Details</button>
-    </td>
-  </li>
-</ul>
+</div>
+
+  <div class="background">
+    <table>
+      <tr *ngFor="let e of employees$ | async">
+        <td>{{ e.lastName }}</td>
+        <td>{{ e.firstName }}</td>
+        <td>
+          <button>Details</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+

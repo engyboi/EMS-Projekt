@@ -18,7 +18,7 @@
   height: 20%;
   width: 50%;
   position: fixed;
-  z-index: 2;
+  z-index: 1;
   top: 10%;
   overflow-x: hidden;
   padding-top: 20px;
@@ -26,10 +26,26 @@
 
 .left {
   left: 0;
-  background-color: red;
+  /*background-color: red;*/
 }
 
 .right {
   right: 0;
-  background-color: darkblue;
+  /*background-color: darkblue;*/
+}
+
+.center {
+  position: relative;
+  top: 50%;
+  left: 30%;
+}
+
+.centerSearch {
+  position: relative;
+  top: 50%;
+  left: 50%;
+}
+
+.background {
+  background-color: rebeccapurple;
 }
