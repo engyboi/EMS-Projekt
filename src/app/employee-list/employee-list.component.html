@@ -1,27 +1,40 @@
 <app-header></app-header>
-<div class="split left">
 
+<div class="aParent">
   <div class="center">
     <button>Add new Employee</button>
   </div>
-
-</div>
-<div class="split right">
   <div class="centerSearch">
     <input>
     <button>Search</button>
   </div>
 </div>
 
-  <div class="background">
-    <table>
-      <tr *ngFor="let e of employees$ | async">
-        <td>{{ e.lastName }}</td>
-        <td>{{ e.firstName }}</td>
-        <td>
-          <button>Details</button>
-        </td>
+
+
+
+
+  <div>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Employee ID</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">First Name</th>
       </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let e of employees$ | async">
+        <td>{{e.id}}</td>
+        <td>{{e.lastName}}</td>
+        <td>{{e.firstName}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#editEmployee">Edit</button>
+        </td>
+
+      </tr>
+
+      </tbody>
     </table>
   </div>
 
