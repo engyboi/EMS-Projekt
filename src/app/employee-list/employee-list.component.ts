@@ -51,4 +51,8 @@ export class EmployeeListComponent {
   navigateToView(employeeId: number | undefined) {
     this.router.navigate(['/viewEmployee', employeeId]);
   }
+
+  navigateToNewEmployee() {
+    this.router.navigate(['/newEmployee']);
+  }
 }
