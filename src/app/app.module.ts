@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { HeaderComponent } from './header/header.component';
 import {FormsModule} from "@angular/forms";
+import { ViewEmployeeComponent } from './view-employee/view-employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeListComponent,
-    HeaderComponent
+    HeaderComponent,
+    ViewEmployeeComponent
   ],
   imports: [
     BrowserModule,

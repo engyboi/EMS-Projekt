@@ -1,20 +1,23 @@
 import {Component} from '@angular/core';
-import {BehaviorSubject, combineLatest, map, Observable, of} from "rxjs";
+import {BehaviorSubject, combineLatest, map, Observable} from "rxjs";
 import {Employee} from "../Employee";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css']
 })
+
 export class EmployeeListComponent {
+
   private employeesData$ = new BehaviorSubject<Employee[]>([]);
   filteredEmployees$: Observable<Employee[]>
   searchTerm: string = "";
   private searchTerm$ = new BehaviorSubject<string>('')
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.fetchData();
 
     this.filteredEmployees$ = combineLatest([
@@ -41,8 +44,11 @@ export class EmployeeListComponent {
     }).subscribe(data => this.employeesData$.next(data));
   }
 
-onSearchInput(){
+  onSearchInput() {
     this.searchTerm$.next(this.searchTerm);
-}
+  }
 
+  navigateToView(employeeId: number | undefined) {
+    this.router.navigate(['/viewEmployee', employeeId]);
+  }
 }
