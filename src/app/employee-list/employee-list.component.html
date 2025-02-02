@@ -5,37 +5,43 @@
     <button>Add new Employee</button>
   </div>
   <div class="centerSearch">
-    <input>
-    <button>Search</button>
+    <input type="text"
+           placeholder="Search"
+           [(ngModel)]="searchTerm"
+           (input)="onSearchInput()">
   </div>
 </div>
 
 
-
-
-
-  <div>
-    <table class="table table-hover">
-      <thead>
-      <tr>
-        <th scope="col">Employee ID</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">First Name</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let e of employees$ | async">
-        <td>{{e.id}}</td>
-        <td>{{e.lastName}}</td>
-        <td>{{e.firstName}}</td>
-        <td>
-          <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#editEmployee">Edit</button>
-        </td>
-
-      </tr>
-
-      </tbody>
-    </table>
+<div>
+  <table class="table table-hover ms-4 me-4">
+    <thead>
+    <tr>
+      <th scope="col">Employee ID</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">First Name</th>
+      <th scope="col">street</th>
+      <th scope="col">postcode</th>
+      <th scope="col">city</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let e of filteredEmployees$ | async">
+      <td>{{ e.id }}</td>
+      <td>{{ e.lastName }}</td>
+      <td>{{ e.firstName }}</td>
+      <td>{{ e.street }}</td>
+      <td>{{ e.postcode }}</td>
+      <td>{{ e.city }}</td>
+      <td>
+        <button type="button" class="btn btn-outline-primary me-2">View</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div *ngIf="(filteredEmployees$ | async)?.length === 0" class="text-center mt-3">
+    No matching employees found
   </div>
+</div>
 
 
