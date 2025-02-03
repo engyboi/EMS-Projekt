@@ -2,11 +2,11 @@
 
 <div class="aParent">
   <div class="center">
-    <button (click)="navigateToNewEmployee()">Add new Employee</button>
+    <button (click)="navigateToNewEmployee()">Neuer Mitarbeiter</button>
   </div>
   <div class="centerSearch">
     <input type="text"
-           placeholder="Search"
+           placeholder="Suche"
            [(ngModel)]="searchTerm"
            (input)="onSearchInput()">
   </div>
@@ -17,12 +17,12 @@
   <table class="table table-hover ms-4 me-4">
     <thead>
     <tr>
-      <th scope="col">Employee ID</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">First Name</th>
-      <th scope="col">street</th>
-      <th scope="col">postcode</th>
-      <th scope="col">city</th>
+      <th scope="col">Mitarbieter ID</th>
+      <th scope="col">Nachname</th>
+      <th scope="col">Vorname</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">Postleitzahl</th>
+      <th scope="col">Stadt</th>
     </tr>
     </thead>
     <tbody>
@@ -34,13 +34,13 @@
       <td>{{ e.postcode }}</td>
       <td>{{ e.city }}</td>
       <td>
-        <button type="button" class="btn btn-outline-primary me-2" (click)="navigateToView(e.id)">View</button>
+        <button type="button" class="btn btn-outline-primary me-2" (click)="navigateToView(e.id)">Details</button>
       </td>
     </tr>
     </tbody>
   </table>
   <div *ngIf="(filteredEmployees$ | async)?.length === 0" class="text-center mt-3">
-    No matching employees found
+    Keine passenden Mitarbeiter gefunden
   </div>
 </div>
 
