@@ -1,0 +1,28 @@
+.card {
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+dt {
+  font-weight: 600;
+  color: #666;
+}
+
+dd {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.alert {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}

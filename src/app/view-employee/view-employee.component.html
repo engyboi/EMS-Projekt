@@ -1,1 +1,69 @@
-<p>view-employee works!</p>
+<app-header></app-header>
+
+<div class="modal fade" [class.show]="showDeleteModal" [style.display]="showDeleteModal ? 'block' : 'none'">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Bestätige Löschung</h5>
+      </div>
+      <div class="modal-body">
+        Willst du den Mitarbeiter wirklich löschen?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" (click)="confirmDelete()">Ja</button>
+        <button type="button" class="btn btn-outline-primary" (click)="cancelDelete()">Nein</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <div class="mb-3 text-start">
+    <button class="btn btn-outline-primary" routerLink="/employee"> <- Zurück zur Liste</button>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger text-center">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="employee">
+    <div class="card-header bg-primary text-white">
+      <h3 class="mb-0 text-center">Mitarbeiter Details</h3>
+    </div>
+    <div class="card-body text-center">
+      <dl class="row justify-content-center">
+        <dt class="col-sm-3">ID:</dt>
+        <dd class="col-sm-9">{{ employee.id }}</dd>
+
+        <dt class="col-sm-3">Vorname:</dt>
+        <dd class="col-sm-9">{{ employee.firstName }}</dd>
+
+        <dt class="col-sm-3">Nachname:</dt>
+        <dd class="col-sm-9">{{ employee.lastName }}</dd>
+
+        <dt class="col-sm-3">Adresse:</dt>
+        <dd class="col-sm-9">
+          {{ employee.street }}<br>
+          {{ employee.postcode }} {{ employee.city }}
+        </dd>
+
+        <dt class="col-sm-3">Nummer:</dt>
+        <dd class="col-sm-9">{{ employee.phone || '-' }}</dd>
+      </dl>
+
+      <div class="d-flex justify-content-center gap-2 mt-4">
+        <button
+          class="btn btn-outline-primary"
+          (click)="loadEmployee(employee.id?.toString() || '')">
+          ↻ Aktualisieren
+        </button>
+        <button
+          (click)="onDelete()"
+          class="btn btn-outline-primary">
+          🗑 Löschen
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
