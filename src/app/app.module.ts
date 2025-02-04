@@ -6,7 +6,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { HeaderComponent } from './header/header.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ViewEmployeeComponent } from './view-employee/view-employee.component';
 import { NewEmployeeComponent } from './new-employee/new-employee.component';
 
@@ -22,7 +22,8 @@ import { NewEmployeeComponent } from './new-employee/new-employee.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
