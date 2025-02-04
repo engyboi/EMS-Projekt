@@ -1,1 +1,39 @@
-<p>new-employee works!</p>
+<div class="form-container">
+  <h2>Neuer Mitarbeiter</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="input-group">
+      <label for="firstName">Vorname:</label>
+      <input type="text" id="firstName" [(ngModel)]="formData.firstName" name="firstName" required>
+    </div>
+
+    <div class="input-group">
+      <label for="lastName">Nachname:</label>
+      <input type="text" id="lastName" [(ngModel)]="formData.lastName" name="lastName" required>
+    </div>
+
+    <div class="input-group">
+      <label for="phone">Telefonnummer:</label>
+      <input type="text" id="phone" [(ngModel)]="formData.phone" name="phone" required>
+    </div>
+
+    <div class="input-group">
+      <label for="city">Stadt:</label>
+      <input type="text" id="city" [(ngModel)]="formData.city" name="city" required>
+    </div>
+
+    <div class="input-group">
+      <label for="street">Straße:</label>
+      <input type="text" id="street" [(ngModel)]="formData.street" name="street" required>
+    </div>
+
+    <div class="input-group">
+      <label for="postalCode">Postleitzahl:</label>
+      <input type="text" id="postalCode" [(ngModel)]="formData.postalCode" name="postalCode" required>
+    </div>
+
+    <div class="button-group">
+      <button type="button" class="cancel" (click)="onCancel()">Abbrechen</button>
+      <button type="submit" class="save">Speichern</button>
+    </div>
+  </form>
+</div>
