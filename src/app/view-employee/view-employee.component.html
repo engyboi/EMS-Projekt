@@ -1,5 +1,50 @@
 <app-header></app-header>
 
+<div class="modal fade" [class.show]="showUpdateModal" [style.display]="showUpdateModal ? 'block' : 'none'">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Mitarbeiter bearbeiten</h5>
+      </div>
+      <div class="modal-body">
+        <form *ngIf="editForm" [formGroup]="editForm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Vorname</label>
+              <input type="text" class="form-control" formControlName="firstName">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Nachname</label>
+              <input type="text" class="form-control" formControlName="lastName">
+            </div>
+            <div class="col-12">
+              <label class="form-label">Straße</label>
+              <input type="text" class="form-control" formControlName="street">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Postleitzahl</label>
+              <input type="text" class="form-control" formControlName="postcode">
+            </div>
+            <div class="col-md-8">
+              <label class="form-label">Stadt</label>
+              <input type="text" class="form-control" formControlName="city">
+            </div>
+            <div class="col-12">
+              <label class="form-label">Telefonnummer</label>
+              <input type="tel" class="form-control" formControlName="phone" placeholder="Optional">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" (click)="confirmUpdate()">Speichern</button>
+        <button type="button" class="btn btn-outline-primary" (click)="cancelUpdate()">Abbrechen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="modal fade" [class.show]="showDeleteModal" [style.display]="showDeleteModal ? 'block' : 'none'">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -19,7 +64,7 @@
 
 <div class="container mt-4">
   <div class="mb-3 text-start">
-    <button class="btn btn-outline-primary" routerLink="/employee"> <- Zurück zur Liste</button>
+    <button class="btn btn-outline-primary" routerLink="/employee">Zurück zur Liste</button>
   </div>
 
   <div *ngIf="errorMessage" class="alert alert-danger text-center">
@@ -54,16 +99,15 @@
       <div class="d-flex justify-content-center gap-2 mt-4">
         <button
           class="btn btn-outline-primary"
-          (click)="loadEmployee(employee.id?.toString() || '')">
-          ↻ Aktualisieren
+          (click)="onUpdate()">
+          Bearbeiten
         </button>
         <button
           (click)="onDelete()"
           class="btn btn-outline-primary">
-          🗑 Löschen
+          Löschen
         </button>
       </div>
-
     </div>
   </div>
 </div>

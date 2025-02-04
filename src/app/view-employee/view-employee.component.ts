@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Employee } from '../Employee';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Employee} from '../Employee';
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-view-employee',
@@ -12,6 +13,9 @@ export class ViewEmployeeComponent implements OnInit {
   employee: Employee | null = null;
   errorMessage = '';
   showDeleteModal = false;
+  showUpdateModal = false;
+  editForm!: FormGroup;
+  originalEmployeeData!: Employee;
   currentEmployeeId: string | null = null;
 
 
@@ -19,7 +23,8 @@ export class ViewEmployeeComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -30,6 +35,67 @@ export class ViewEmployeeComponent implements OnInit {
         this.handleError('Keine richtige Mitarbeiter ID');
       }
     });
+    this.initForm()
+  }
+
+  private initForm() {
+    this.editForm = new FormGroup({
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
+      street: new FormControl(''),
+      postcode: new FormControl(''),
+      city: new FormControl(''),
+      phone: new FormControl(''),
+    })
+  }
+
+  onUpdate() {
+    if (this.employee) {
+      this.originalEmployeeData = {...this.employee};
+      this.editForm.patchValue({
+        firstName: this.employee.firstName,
+        lastName: this.employee.lastName,
+        street: this.employee.street,
+        postcode: this.employee.postcode,
+        city: this.employee.city,
+        phone: this.employee.phone || ''
+      });
+      this.showUpdateModal = true;
+    }
+  }
+
+  confirmUpdate() {
+    if (this.currentEmployeeId && this.employee) {
+      const formData = this.editForm.value;
+      const updatePayload: any = {};
+
+      Object.keys(formData).forEach(key => {
+        if (formData[key] !== this.originalEmployeeData [key as keyof Employee]) {
+          updatePayload[key] = formData[key];
+        }
+      });
+
+      if (Object.keys(updatePayload).length > 0) {
+        this.http.put(`/backend/${this.currentEmployeeId}`, updatePayload, {
+          headers: new HttpHeaders().set('Content-Type', 'application/json')
+        }).subscribe({
+          next: () => {
+            this.loadEmployee(this.currentEmployeeId!);
+            this.showUpdateModal = false;
+          },
+          error: (error) => {
+            this.handleError('Fehler beim Speichern der Änderungen');
+            console.error('Update error: ', error);
+          }
+        });
+      } else {
+        this.showUpdateModal = false;
+      }
+    }
+  }
+
+  cancelUpdate() {
+    this.showUpdateModal = false;
   }
 
   onDelete() {

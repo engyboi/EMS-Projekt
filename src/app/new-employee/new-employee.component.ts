@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-new-employee',
@@ -14,14 +15,33 @@ export class NewEmployeeComponent {
     phone: '',
     city: '',
     street: '',
-    postalCode: ''
+    postcode: ''
   };
 
-  constructor(private router: Router) {}
+
+  constructor(private router: Router, private http: HttpClient) {}
 
   onSubmit() {
-    console.log('Gespeicherte Daten:', this.formData);
-    this.router.navigate(['/']); // Zurück zur Startseite
+    const employeeData = {
+      firstName: this.formData.firstName,
+      lastName: this.formData.lastName,
+      phone: this.formData.phone,
+      city: this.formData.city,
+      street: this.formData.street,
+      postcode: this.formData.postcode
+    };
+
+    console.log('Gespeicherte Daten:', employeeData);
+    this.http.post('/employees', employeeData) //TODO URL funktioniert noch nicht
+      .subscribe({
+        next: (response) => {
+          console.log('Gespeicherte Daten:', response);
+          this.router.navigate(['/']); // Zurück zur Startseite
+        },
+        error: (error) => {
+          console.error('Fehler beim Speichern des Mitarbeiters:', error)
+        }
+      });
   }
 
   onCancel() {
