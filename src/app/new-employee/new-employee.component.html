@@ -2,13 +2,13 @@
 
   <div class="overlay" *ngIf="showError">
     <div class="confirmation-box">
-      <p>Es müssen alle Felder ausgefühlt sien</p>
+      <p>Es müssen alle Felder ausgefüllt sein</p>
       <button class="button" (click)="showErrorOff()">Ok</button>
     </div>
   </div>
   <div class="overlay" *ngIf="falsePLZ">
     <div class="confirmation-box">
-      <p>Postleitzahl muss 5 nummern betragen</p>
+      <p>Postleitzahl muss 5 nummern haben</p>
       <button class="button" (click)="falsePLZOff()">Ok</button>
     </div>
   </div>
