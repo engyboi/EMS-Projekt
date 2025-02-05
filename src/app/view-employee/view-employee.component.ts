@@ -45,7 +45,7 @@ export class ViewEmployeeComponent implements OnInit {
       street: new FormControl(''),
       postcode: new FormControl(''),
       city: new FormControl(''),
-      phone: new FormControl(''),
+      phone: new FormControl('')
     })
   }
 

@@ -8,7 +8,6 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./new-employee.component.css']
 })
 export class NewEmployeeComponent {
-  // Datenmodell für den Mitarbeiter
   formData = {
     firstName: '',
     lastName: '',
@@ -32,11 +31,11 @@ export class NewEmployeeComponent {
     };
 
     console.log('Gespeicherte Daten:', employeeData);
-    this.http.post('/employees', employeeData) //TODO URL funktioniert noch nicht
+    this.http.post('http://localhost:8089/employees', employeeData)
       .subscribe({
         next: (response) => {
           console.log('Gespeicherte Daten:', response);
-          this.router.navigate(['/']); // Zurück zur Startseite
+          this.router.navigate(['/']);
         },
         error: (error) => {
           console.error('Fehler beim Speichern des Mitarbeiters:', error)
@@ -45,6 +44,6 @@ export class NewEmployeeComponent {
   }
 
   onCancel() {
-    this.router.navigate(['/']); // Zurück zur Startseite
+    this.router.navigate(['/']);
   }
 }

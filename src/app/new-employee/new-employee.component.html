@@ -28,7 +28,7 @@
 
     <div class="input-group">
       <label for="postalCode">Postleitzahl:</label>
-      <input type="text" id="postalCode" [(ngModel)]="formData.postcode" name="postalCode" required>
+      <input type="text" id="postalCode" [(ngModel)]="formData.postcode" name="postalCode" required maxlength="5" minlength="5">
     </div>
 
     <div class="button-group">
