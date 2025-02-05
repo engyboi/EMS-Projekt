@@ -1,18 +1,5 @@
+<app-header></app-header>
 <div class="form-container">
-
-  <div class="overlay" *ngIf="showError">
-    <div class="confirmation-box">
-      <p>Es müssen alle Felder ausgefüllt sein</p>
-      <button class="button" (click)="showErrorOff()">Ok</button>
-    </div>
-  </div>
-  <div class="overlay" *ngIf="falsePLZ">
-    <div class="confirmation-box">
-      <p>Postleitzahl muss 5 nummern haben</p>
-      <button class="button" (click)="falsePLZOff()">Ok</button>
-    </div>
-  </div>
-
   <h2>Neuer Mitarbeiter</h2>
   <form (ngSubmit)="onSubmit()">
 
@@ -52,4 +39,18 @@
       <button type="submit" class="save">Speichern</button>
     </div>
   </form>
+</div>
+
+
+<div class="overlay" *ngIf="showError">
+  <div class="confirmation-box">
+    <p>Es müssen alle Felder ausgefüllt sein</p>
+    <button class="button" (click)="showErrorOff()">Ok</button>
+  </div>
+</div>
+<div class="overlay" *ngIf="falsePLZ">
+  <div class="confirmation-box">
+    <p>Postleitzahl muss 5 nummern haben</p>
+    <button class="button" (click)="falsePLZOff()">Ok</button>
+  </div>
 </div>
