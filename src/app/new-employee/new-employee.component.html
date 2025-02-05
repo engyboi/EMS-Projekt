@@ -1,6 +1,21 @@
 <div class="form-container">
+
+  <div class="overlay" *ngIf="showError">
+    <div class="confirmation-box">
+      <p>Es müssen alle Felder ausgefühlt sien</p>
+      <button class="button" (click)="showErrorOff()">Ok</button>
+    </div>
+  </div>
+  <div class="overlay" *ngIf="falsePLZ">
+    <div class="confirmation-box">
+      <p>Postleitzahl muss 5 nummern betragen</p>
+      <button class="button" (click)="falsePLZOff()">Ok</button>
+    </div>
+  </div>
+
   <h2>Neuer Mitarbeiter</h2>
   <form (ngSubmit)="onSubmit()">
+
     <div class="input-group">
       <label for="firstName">Vorname:</label>
       <input type="text" id="firstName" [(ngModel)]="formData.firstName" name="firstName" required>
@@ -28,7 +43,8 @@
 
     <div class="input-group">
       <label for="postalCode">Postleitzahl:</label>
-      <input type="text" id="postalCode" [(ngModel)]="formData.postcode" name="postalCode" required maxlength="5" minlength="5">
+      <input type="text" id="postalCode" [(ngModel)]="formData.postcode" name="postalCode" required maxlength="5"
+             minlength="5">
     </div>
 
     <div class="button-group">
